@@ -43,8 +43,8 @@ void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado){
                     cout << "No hay espacio para insertar mas jugadores" << endl;
                     return;
                 }else{
-                    cout << arrayEquipos[i].indexLibreJugadores;
-                    arrayEquipos[i].indexLibreJugadores++;
+                    int indexLibre = arrayEquipos[i].indexLibreJugadores;
+                    arrayEquipos[i].arrayJugadores[indexLibre] = jugadorInsertado;
                     return;
                 }
             }
@@ -74,8 +74,33 @@ Jugador Torneo::getInfoJugador(string nombreJugadorConsultado){
     return Jugador{};
 }
 
-void Torneo::changeInfoEquipo(){  
-    cout << "hello";
+void Torneo::changeInfoEquipo(string nombreEquipoCambiado, string elementoCambiado, string nuevoValor){  
+    for(int i=0; i<indexLibreEquipos; i++){
+        if(nombreEquipoCambiado==arrayEquipos[i].nombreEquipo){
+            if(elementoCambiado=="nombre"){
+                arrayEquipos[i].nombreEquipo = nuevoValor;
+                return;
+            } else if(elementoCambiado=="juegosGanados"){
+                arrayEquipos[i].juegosGanados = stoi(nuevoValor);
+                return;
+            } else if(elementoCambiado=="juegosPerdidos"){
+                arrayEquipos[i].juegosPerdidos = stoi(nuevoValor);
+                return;
+            } else if(elementoCambiado=="juegosEmpatados"){
+                arrayEquipos[i].juegosEmpatados = stoi(nuevoValor);
+                return;
+            } else if(elementoCambiado=="puntosAcc"){
+                arrayEquipos[i].puntosAcc = stoi(nuevoValor);
+                return;
+            } else{
+                cout << "No se encontro el elemento especificado" << endl;
+                return;
+            }
+        } else{
+            cout << "No se encontro el equipo especificado" << endl;
+            return;
+        }
+    }
 }
 
 void Torneo::changeInfoJugador(){  

@@ -46,7 +46,7 @@ class Torneo{
 	Jugador getInfoJugador(string nombreJugadorConsultado);
 	
 	//UPDATE
-	void changeInfoEquipo();
+	void changeInfoEquipo(string nombreEquipoCambiado, string elementoCambiado, string nuevoValor);
 	void changeInfoJugador();
 
 	//DELETE
