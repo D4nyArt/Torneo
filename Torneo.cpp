@@ -132,13 +132,13 @@ void Torneo::deleteJugador(string nombreJugadorEliminado){
     }
 }
 
-bool compareEquipos(Equipo a, Equipo b) {
+bool Torneo::compareEquipos(Equipo a, Equipo b) {
     return a.puntosAcc > b.puntosAcc;
 }
 
 void Torneo::showInfoTorneo(){
 
-    sort(arrayEquipos, arrayEquipos + indexLibreEquipos, compareEquipos);
+    sort(arrayEquipos, arrayEquipos + indexLibreEquipos, Torneo::compareEquipos);
     
     for(int i=0; i<indexLibreEquipos; i++){
         cout << arrayEquipos[i].nombreEquipo << " " << arrayEquipos[i].juegosGanados << " " << arrayEquipos[i].juegosEmpatados << " " << arrayEquipos[i].juegosPerdidos << " " << arrayEquipos[i].puntosAcc << endl;

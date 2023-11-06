@@ -33,6 +33,8 @@ class Torneo{
 
 	Equipo* arrayEquipos;
 
+	static bool compareEquipos(Equipo a, Equipo b);
+
 	public:
 	
 	//CREATE
