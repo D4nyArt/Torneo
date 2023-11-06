@@ -33,20 +33,19 @@ void Torneo::insertEquipo(Equipo equipoinsertado){
 }
 
 void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado) {
-    for (int i = 0; i < N; i++) {
-        if (equipoDelJugador == arrayEquipos[i].nombreEquipo) {
-            if (arrayEquipos[i].indexLibreJugadores >= M) {
-                cout << "No hay espacio para insertar mas jugadores en el equipo " << equipoDelJugador << endl;
-                return;
-            } else {
+    for (int i = 0; i < indexLibreEquipos; ++i) {
+        if (arrayEquipos[i].nombreEquipo == equipoDelJugador) {
+            if (arrayEquipos[i].indexLibreJugadores < M) {
                 arrayEquipos[i].arrayJugadores[arrayEquipos[i].indexLibreJugadores] = jugadorInsertado;
                 arrayEquipos[i].indexLibreJugadores++;
-                return;
+                cout << "Jugador insertado en el equipo: " << equipoDelJugador << endl;
+            } else {
+                cout << "El equipo ya tiene el número máximo de jugadores." << endl;
             }
+            return;
         }
     }
-    cout << "No se encontro el equipo " << equipoDelJugador << endl;
-    return;
+    cout << "No se encontró el equipo: " << equipoDelJugador << endl;
 }
 
 Equipo Torneo::getInfoEquipo(string nombreEquipoConsultado){
