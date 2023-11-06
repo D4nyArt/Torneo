@@ -6,24 +6,26 @@
 #include <algorithm>
 using namespace std;
 
-struct Jugador{
-	string nombreJugador;
-	int numeroId;
-	string posicion;
-	int averageAcc;
-};
-
-struct Equipo{
-	string nombreEquipo;
-	int juegosGanados;
-	int juegosPerdidos;
-	int juegosEmpatados;
-	int puntosAcc;
-	Jugador* arrayJugadores;
-	int indexLibreJugadores;
-};
 
 class Torneo{
+	public:
+
+	struct Jugador{
+		string nombreJugador;
+		int numeroId;
+		string posicion;
+		int averageAcc;
+	};
+
+	struct Equipo{
+		string nombreEquipo;
+		int juegosGanados;
+		int juegosPerdidos;
+		int juegosEmpatados;
+		int puntosAcc;
+		Jugador* arrayJugadores;
+		int indexLibreJugadores;
+	};
 
 	private:
 
@@ -50,7 +52,7 @@ class Torneo{
 	
 	//UPDATE
 	void changeInfoEquipo(string nombreEquipoCambiado, string elementoCambiado, string nuevoValor);
-	void changeInfoJugador();
+	void changeInfoJugador(string nombreJugadorCambiado, string elementoCambiado, string nuevoValor);
 
 	//DELETE
 	void deleteEquipo(string nombreEquipoEliminado);

@@ -1,16 +1,28 @@
 #include "Torneo.h"
 
 
-Torneo::Torneo(int num_equipos, int num_jugadores) {
-    N = num_equipos;
-    M = num_jugadores;
+Torneo::Torneo(const int N, const int M) {
+    this -> N = N;
+    this -> M = M;
+
     indexLibreEquipos = 0;
 
-    arrayEquipos = new Equipo[num_equipos];
+    arrayEquipos = new Equipo[N];
 
-    for (int i = 0; i < num_equipos; i++) {
-        arrayEquipos[i].arrayJugadores = new Jugador[num_jugadores];
+    for (int i = 0; i < N; i++) {
+        arrayEquipos[i].arrayJugadores = new Jugador[M];
         arrayEquipos[i].indexLibreJugadores = 0;
+        arrayEquipos[i].nombreEquipo = "";
+        arrayEquipos[i].juegosGanados = 0;
+        arrayEquipos[i].juegosEmpatados=0;
+        arrayEquipos[i].juegosPerdidos=0;
+        arrayEquipos[i].puntosAcc= 0;
+        for(int j=0; j<M; j++){
+            arrayEquipos[i].arrayJugadores[j].nombreJugador = "";
+            arrayEquipos[i].arrayJugadores[j].numeroId = 0;
+            arrayEquipos[i].arrayJugadores[j].posicion = "";
+            arrayEquipos[i].arrayJugadores[j].averageAcc = 0;
+        }
     }
 }
 
@@ -25,31 +37,19 @@ Torneo::~Torneo(){
 void Torneo::insertEquipo(Equipo equipoinsertado){
     if(indexLibreEquipos >= N){
         cout << "No hay espacio para insertar mas equipos" << endl;
-        return;
+        return; 
     } else{
         arrayEquipos[indexLibreEquipos] = equipoinsertado;
         indexLibreEquipos++;
     }
 }
 
-void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado) {
-    for (int i = 0; i < indexLibreEquipos; ++i) {
-        if (arrayEquipos[i].nombreEquipo == equipoDelJugador) {
-            if (arrayEquipos[i].indexLibreJugadores < M) {
-                arrayEquipos[i].arrayJugadores[arrayEquipos[i].indexLibreJugadores] = jugadorInsertado;
-                arrayEquipos[i].indexLibreJugadores++;
-                cout << "Jugador insertado en el equipo: " << equipoDelJugador << endl;
-            } else {
-                cout << "El equipo ya tiene el número máximo de jugadores." << endl;
-            }
-            return;
-        }
-    }
-    cout << "No se encontró el equipo: " << equipoDelJugador << endl;
+void Torneo::insertJugador(string nombreEquipo, Jugador jugadorInsertado) {
+    cout << arrayEquipos[0].arrayJugadores[0].averageAcc << endl;
 }
 
-Equipo Torneo::getInfoEquipo(string nombreEquipoConsultado){
-    for(int i=0; i < N; i++){
+Torneo::Equipo Torneo::getInfoEquipo(string nombreEquipoConsultado){
+    for(int i=0; i < indexLibreEquipos; i++){
         if(nombreEquipoConsultado == arrayEquipos[i].nombreEquipo){
             return arrayEquipos[i];
         }
@@ -58,9 +58,9 @@ Equipo Torneo::getInfoEquipo(string nombreEquipoConsultado){
     return Equipo{};
 }
 
-Jugador Torneo::getInfoJugador(string nombreJugadorConsultado){
+Torneo::Jugador Torneo::getInfoJugador(string nombreJugadorConsultado){
     for(int i=0; i < N; i++){
-        for(int j=0; j < M; j++){
+        for(int j=0; j < M ; j++){
             if(nombreJugadorConsultado == arrayEquipos[i].arrayJugadores[j].nombreJugador){
                 return arrayEquipos[i].arrayJugadores[j];
             }
@@ -99,12 +99,36 @@ void Torneo::changeInfoEquipo(string nombreEquipoCambiado, string elementoCambia
     }
 }
 
-void Torneo::changeInfoJugador(){  
-    cout << "world";
+void Torneo::changeInfoJugador(string nombreJugadorCambiado, string elementoCambiado, string nuevoValor){  
+    for(int i=0; i<N; i++){
+        for(int j=0; j<M; j++){
+            if(nombreJugadorCambiado==arrayEquipos[i].arrayJugadores[j].nombreJugador){
+                if(elementoCambiado=="nombre"){
+                    arrayEquipos[i].arrayJugadores[j].nombreJugador = nuevoValor;
+                    return;
+                } else if(elementoCambiado=="numeroId"){
+                    arrayEquipos[i].arrayJugadores[j].numeroId = stoi(nuevoValor);
+                    return;
+                } else if(elementoCambiado=="posicion"){
+                    arrayEquipos[i].arrayJugadores[j].posicion = nuevoValor;
+                    return;
+                } else if(elementoCambiado=="averageAcc"){
+                    arrayEquipos[i].arrayJugadores[j].averageAcc = stoi(nuevoValor);
+                    return;
+                } else{
+                    cout << "No se encontro el elemento especificado" << endl;
+                    return;
+                }
+            } else{
+                cout << "No se encontro el jugador especificado" << endl;
+                return;
+            }
+        }    
+    }
 }
 
 void Torneo::deleteEquipo(string nombreEquipoEliminado){
-    for(int i=0; i<N; i++){
+    for(int i=0; i<indexLibreEquipos; i++){
         if(nombreEquipoEliminado == arrayEquipos[i].nombreEquipo){
             for(int j=i; j<N-1; j++){
                 arrayEquipos[j] = arrayEquipos[j+1];
