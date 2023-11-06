@@ -32,24 +32,21 @@ void Torneo::insertEquipo(Equipo equipoinsertado){
     }
 }
 
-void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado){
-		int arrEquipoIndex = -1;
-		for (int i = 0; i < indexLibreEquipos; i++) {
-            if (arrayEquipos[i].nombreEquipo == equipoDelJugador) {
-                arrEquipoIndex = i;
+void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado) {
+    for (int i = 0; i < N; i++) {
+        if (equipoDelJugador == arrayEquipos[i].nombreEquipo) {
+            if (arrayEquipos[i].indexLibreJugadores >= M) {
+                cout << "No hay espacio para insertar mas jugadores en el equipo " << equipoDelJugador << endl;
+                return;
+            } else {
+                arrayEquipos[i].arrayJugadores[arrayEquipos[i].indexLibreJugadores] = jugadorInsertado;
+                arrayEquipos[i].indexLibreJugadores++;
+                return;
             }
         }
-        if (arrEquipoIndex != -1 && arrayEquipos[arrEquipoIndex].indexLibreJugadores < M) {
-	        arrayEquipos[arrEquipoIndex].arrayJugadores[indexLibreEquipos] = jugadorInsertado;
-            arrayEquipos[arrEquipoIndex].indexLibreJugadores++;
-            return;
-        } else if (arrEquipoIndex == -1) {
-            cout << "No existe ese equipo" << endl;
-            return;
-        } else {
-            cout << "El cupo de jugadores para ese equipo ya esta lleno" << endl;
-            return;
-        }
+    }
+    cout << "No se encontro el equipo " << equipoDelJugador << endl;
+    return;
 }
 
 Equipo Torneo::getInfoEquipo(string nombreEquipoConsultado){
