@@ -28,7 +28,7 @@ void Torneo::insertEquipo(Equipo equipoinsertado){
         return;
     } else{
         arrayEquipos[indexLibreEquipos] = equipoinsertado;
-        indexLibreEquipos++;
+        arrayEquipos[indexLibreEquipos].indexLibreJugadores++;
     }
 }
 
