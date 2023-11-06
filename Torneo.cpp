@@ -33,23 +33,23 @@ void Torneo::insertEquipo(Equipo equipoinsertado){
 }
 
 void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado){
-    if(indexLibreEquipos==0){
-        cout << "No hay equipos registrados" << endl;
-        return;
-    }else {
-        for(int i=0; i<indexLibreEquipos; i++){
-            if(equipoDelJugador == arrayEquipos[i].nombreEquipo){
-                if(arrayEquipos[i].indexLibreJugadores >= M){
-                    cout << "No hay espacio para insertar mas jugadores" << endl;
-                    return;
-                }else{
-                    int indexLibre = arrayEquipos[i].indexLibreJugadores;
-                    arrayEquipos[i].arrayJugadores[indexLibre] = jugadorInsertado;
-                    return;
-                }
+		int arrEquipoIndex = -1;
+		for (int i = 0; i < indexLibreEquipos; i++) {
+            if (arrayEquipos[i].nombreEquipo == equipoDelJugador) {
+                arrEquipoIndex = i;
             }
         }
-    }
+        if (arrEquipoIndex != -1 && arrayEquipos[arrEquipoIndex].indexLibreJugadores < M) {
+	        arrayEquipos[arrEquipoIndex].arrayJugadores[indexLibreEquipos] = jugadorInsertado;
+            arrayEquipos[arrEquipoIndex].indexLibreJugadores++;
+            return;
+        } else if (arrEquipoIndex == -1) {
+            cout << "No existe ese equipo" << endl;
+            return;
+        } else {
+            cout << "El cupo de jugadores para ese equipo ya esta lleno" << endl;
+            return;
+        }
 }
 
 Equipo Torneo::getInfoEquipo(string nombreEquipoConsultado){
@@ -132,10 +132,16 @@ void Torneo::deleteJugador(string nombreJugadorEliminado){
     }
 }
 
+bool compareEquipos(Equipo a, Equipo b) {
+    return a.puntosAcc > b.puntosAcc;
+}
+
 void Torneo::showInfoTorneo(){
+
+    sort(arrayEquipos, arrayEquipos + indexLibreEquipos, compareEquipos);
+    
     for(int i=0; i<indexLibreEquipos; i++){
         cout << arrayEquipos[i].nombreEquipo << " " << arrayEquipos[i].juegosGanados << " " << arrayEquipos[i].juegosEmpatados << " " << arrayEquipos[i].juegosPerdidos << " " << arrayEquipos[i].puntosAcc << endl;
     }
-
 }
 

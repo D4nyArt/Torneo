@@ -35,10 +35,10 @@ int main(){
     t1.insertEquipo(equipo2);
     t1.insertEquipo(equipo3);
     //t1.insertJugador("San Pancho", jugador1);
-    imprimirEquipo(t1.getInfoEquipo("San Pancho"));
+    //imprimirEquipo(t1.getInfoEquipo("San Pancho"));
     //t1.changeInfoEquipo("San Pancho", "juegosGanados", "8");
-    imprimirEquipo(t1.getInfoEquipo("San Pancho"));
-    //t1.showInfoTorneo();
+    //imprimirEquipo(t1.getInfoEquipo("San Pancho"));
+    t1.showInfoTorneo();
     cout<<"ok"<< endl;
     return 0;
 }
