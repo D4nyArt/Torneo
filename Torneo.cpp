@@ -20,10 +20,10 @@ Torneo::~Torneo(){
     }
 
     delete[] arrayEquipos;
-};
+}
 
 void Torneo::insertEquipo(Equipo equipoinsertado){
-    if(indexLibreEquipos == N){
+    if(indexLibreEquipos >= N){
         cout << "No hay espacio para insertar mas equipos" << endl;
         return;
     } else{
@@ -33,22 +33,22 @@ void Torneo::insertEquipo(Equipo equipoinsertado){
 }
 
 void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado){
-    if(indexLibreEquipos == 0){
+    if(indexLibreEquipos==0){
         cout << "No hay equipos registrados" << endl;
         return;
-    } else {
-        for(int i=0; i < N; i++){
+    }else {
+        for(int i=0; i<indexLibreEquipos; i++){
             if(equipoDelJugador == arrayEquipos[i].nombreEquipo){
-                if(arrayEquipos[i].indexLibreJugadores == M){
-                    cout << "No hay espacio para insertar mas jugadores en este equipo" << endl;
+                if(arrayEquipos[i].indexLibreJugadores >= M){
+                    cout << "No hay espacio para insertar mas jugadores" << endl;
+                    return;
+                }else{
+                    cout << arrayEquipos[i].indexLibreJugadores;
+                    arrayEquipos[i].indexLibreJugadores++;
                     return;
                 }
-                arrayEquipos[i].arrayJugadores[arrayEquipos[i].indexLibreJugadores] = jugadorInsertado;
-                arrayEquipos[i].indexLibreJugadores++;
-                return;
             }
         }
-        cout << "Equipo no encontrado" << endl;
     }
 }
 
@@ -85,10 +85,11 @@ void Torneo::changeInfoJugador(){
 void Torneo::deleteEquipo(string nombreEquipoEliminado){
     for(int i=0; i<N; i++){
         if(nombreEquipoEliminado == arrayEquipos[i].nombreEquipo){
-            for(int j=i; j<N; j++){
+            for(int j=i; j<N-1; j++){
                 arrayEquipos[j] = arrayEquipos[j+1];
             }
             indexLibreEquipos--;
+            return;
         }
     }
 }

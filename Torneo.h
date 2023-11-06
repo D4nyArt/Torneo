@@ -54,7 +54,6 @@ class Torneo{
 	void deleteJugador(string nombreJugadorEliminado);
 
 	//TABLE
-	
 	void showInfoTorneo();
 
 };
