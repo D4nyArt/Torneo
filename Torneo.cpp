@@ -51,12 +51,12 @@ void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado) {
                 arrayEquipos[i].indexLibreJugadores++;
                 cout << "Jugador insertado en el equipo: " << equipoDelJugador << endl;
             } else {
-                cout << "El equipo ya tiene el número máximo de jugadores." << endl;
+                cout << "El equipo ya tiene el numero maximo de jugadores." << endl;
             }
             return;
         }
     }
-    cout << "No se encontró el equipo: " << equipoDelJugador << endl;
+    cout << "No se encontro el equipo: " << equipoDelJugador << endl;
 }
 
 Torneo::Equipo Torneo::getInfoEquipo(string nombreEquipoConsultado){
@@ -103,11 +103,9 @@ void Torneo::changeInfoEquipo(string nombreEquipoCambiado, string elementoCambia
                 cout << "No se encontro el elemento especificado" << endl;
                 return;
             }
-        } else{
-            cout << "No se encontro el equipo especificado" << endl;
-            return;
         }
     }
+    cout << "No se encontro el equipo especificado" << endl;
 }
 
 void Torneo::changeInfoJugador(string nombreJugadorCambiado, string elementoCambiado, string nuevoValor){  
@@ -124,18 +122,16 @@ void Torneo::changeInfoJugador(string nombreJugadorCambiado, string elementoCamb
                     arrayEquipos[i].arrayJugadores[j].posicion = nuevoValor;
                     return;
                 } else if(elementoCambiado=="averageAcc"){
-                    arrayEquipos[i].arrayJugadores[j].averageAcc = stoi(nuevoValor);
+                    arrayEquipos[i].arrayJugadores[j].averageAcc = stod(nuevoValor);
                     return;
                 } else{
                     cout << "No se encontro el elemento especificado" << endl;
                     return;
                 }
-            } else{
-                cout << "No se encontro el jugador especificado" << endl;
-                return;
             }
         }    
     }
+    cout << "No se encontro el jugador especificado" << endl;
 }
 
 void Torneo::deleteEquipo(string nombreEquipoEliminado){
