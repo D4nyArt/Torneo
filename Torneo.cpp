@@ -1,7 +1,7 @@
 #include "Torneo.h"
 
 
-Torneo::Torneo(const int N, const int M) {
+Torneo::Torneo(int N, int M) {
     this -> N = N;
     this -> M = M;
 

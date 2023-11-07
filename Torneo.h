@@ -41,7 +41,7 @@ class Torneo{
 	public:
 	
 	//CREATE
-	Torneo(int num_equipos, int num_jugadores);
+	Torneo(int N ,int M);
 	~Torneo();
 
 	void insertEquipo(Equipo equipoInsertado);
