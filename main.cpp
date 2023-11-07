@@ -40,7 +40,7 @@ int main(){
     //t1.insertJugador("San Pancho", jugador1);
     //imprimirEquipo(t1.getInfoEquipo("San Pancho"));
     t1.changeInfoEquipo("San Pancho", "juegosGanados", "8");
-    t1.deleteEquipo("San Pancho");
+    //t1.deleteEquipo("San Pancho");
     t1.showInfoTorneo();
     cout<<"ok"<< endl;
     return 0;

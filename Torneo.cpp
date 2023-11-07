@@ -141,13 +141,16 @@ void Torneo::deleteEquipo(string nombreEquipoEliminado){
 
 void Torneo::deleteJugador(string nombreJugadorEliminado){
     for(int i=0; i<N; i++){
+        bool jugadorEncontrado = false;
         for(int j=0; j<M; j++){
-            if(nombreJugadorEliminado == arrayEquipos[i].arrayJugadores[j].nombreJugador){
-                for(int k=j; k<M; k++){
-                    arrayEquipos[i].arrayJugadores[k] = arrayEquipos[i].arrayJugadores[k+1];
-                }
-                arrayEquipos[i].indexLibreJugadores--;
+            if(jugadorEncontrado && j < M-1){
+                arrayEquipos[i].arrayJugadores[j-1] = arrayEquipos[i].arrayJugadores[j];
+            } else if(nombreJugadorEliminado == arrayEquipos[i].arrayJugadores[j].nombreJugador){
+                jugadorEncontrado = true;
             }
+        }
+        if(jugadorEncontrado){
+            arrayEquipos[i].indexLibreJugadores--;
         }
     }
 }
@@ -156,12 +159,22 @@ bool Torneo::compareEquipos(Equipo a, Equipo b) {
     return a.puntosAcc > b.puntosAcc;
 }
 
-void Torneo::showInfoTorneo(){
-
+void Torneo::showInfoTorneo() {
     sort(arrayEquipos, arrayEquipos + indexLibreEquipos, Torneo::compareEquipos);
-    
-    for(int i=0; i<indexLibreEquipos; i++){
-        cout << arrayEquipos[i].nombreEquipo << " " << arrayEquipos[i].juegosGanados << " " << arrayEquipos[i].juegosEmpatados << " " << arrayEquipos[i].juegosPerdidos << " " << arrayEquipos[i].puntosAcc << endl;
+
+    const int colWidth = 15;
+
+    cout << setw(colWidth) << left << "Nombre";
+    cout << setw(colWidth) << left << "Ganados";
+    cout << setw(colWidth) << left << "Perdidos";
+    cout << setw(colWidth) << left << "Empatados";
+    cout << setw(colWidth) << left << "Puntos" << endl;
+
+    for (int i = 0; i < indexLibreEquipos; i++) {
+        cout << setw(colWidth) << left << arrayEquipos[i].nombreEquipo;
+        cout << setw(colWidth) << left << arrayEquipos[i].juegosGanados;
+        cout << setw(colWidth) << left << arrayEquipos[i].juegosPerdidos;
+        cout << setw(colWidth) << left << arrayEquipos[i].juegosEmpatados;
+        cout << setw(colWidth) << left << arrayEquipos[i].puntosAcc << endl;
     }
 }
-
