@@ -27,10 +27,9 @@ Torneo::Torneo(int N, int M) {
 }
 
 Torneo::~Torneo(){
-    for (int i = 0; i < N; i++) {
+    for(int i=0; i<N; i++){
         delete[] arrayEquipos[i].arrayJugadores;
     }
-
     delete[] arrayEquipos;
 }
 
@@ -44,8 +43,20 @@ void Torneo::insertEquipo(Equipo equipoinsertado){
     }
 }
 
-void Torneo::insertJugador(string nombreEquipo, Jugador jugadorInsertado) {
-    cout << arrayEquipos[0].arrayJugadores[0].averageAcc << endl;
+void Torneo::insertJugador(string equipoDelJugador, Jugador jugadorInsertado) {
+    for (int i = 0; i < indexLibreEquipos; ++i) {
+        if (arrayEquipos[i].nombreEquipo == equipoDelJugador) {
+            if (arrayEquipos[i].indexLibreJugadores < M) {
+                arrayEquipos[i].arrayJugadores[arrayEquipos[i].indexLibreJugadores] = jugadorInsertado;
+                arrayEquipos[i].indexLibreJugadores++;
+                cout << "Jugador insertado en el equipo: " << equipoDelJugador << endl;
+            } else {
+                cout << "El equipo ya tiene el número máximo de jugadores." << endl;
+            }
+            return;
+        }
+    }
+    cout << "No se encontró el equipo: " << equipoDelJugador << endl;
 }
 
 Torneo::Equipo Torneo::getInfoEquipo(string nombreEquipoConsultado){
