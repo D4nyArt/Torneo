@@ -1,6 +1,5 @@
 #include "Torneo.h"
 
-
 void imprimirJugador(const Torneo::Jugador& jugador) {
     cout << "Nombre: " << jugador.nombreJugador << endl;
     cout << "Numero de ID: " << jugador.numeroId << endl;
