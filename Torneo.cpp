@@ -1,10 +1,10 @@
 /*
-Este programa es la implementacion del ADT de un Torneo (estructura de datos
- lineal) que representar la información relacionada con un torneo de algún deporte.
+Este programa es la implementacion del ADT de un Torneo (estructura linealde datos) que representar la información relacionada con un torneo de algún deporte.
 */
 
 // Creado el 1 de noviembre del 2023
 // Editado el 6 de noviembre del 2023
+// Daniel Artega Mercado | A01369706
 
 #include "Torneo.h"  
 
